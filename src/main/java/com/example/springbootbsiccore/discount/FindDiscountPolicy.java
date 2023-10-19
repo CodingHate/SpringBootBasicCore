@@ -9,7 +9,7 @@ public class FindDiscountPolicy implements DiscountPolicy{
 
     @Override
     public int discount(Member member, int price) {
-        if(member.getGread() == Grade.MVP){
+        if(member.getGread() == Grade.VIP){
             return discountFixAmound;
         }
         else{
