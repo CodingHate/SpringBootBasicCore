@@ -3,19 +3,18 @@ package com.example.springbootbsiccore;
 import com.example.springbootbsiccore.member.Grade;
 import com.example.springbootbsiccore.member.Member;
 import com.example.springbootbsiccore.member.MemberService;
-import com.example.springbootbsiccore.member.MemberServiceImpl;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-@SpringBootApplication
-public class SpringbootBsicCoreApplication {
+public class MemberApp {
 
     public static void main(String[] args)
     {
-        AppConfig appConfig = new AppConfig();
+//        AppConfig appConfig = new AppConfig();
 
-        //MemberService memberService = new MemberServiceImpl();
-        MemberService memberService = appConfig.memberService();
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+        MemberService memberService = applicationContext.getBean("memberService",MemberService.class);
+
         Member member = new Member(1L, "memberA", Grade.VIP);
         memberService.joing(member);
 
