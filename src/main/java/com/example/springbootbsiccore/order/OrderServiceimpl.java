@@ -6,36 +6,16 @@ import com.example.springbootbsiccore.discount.RateDiscountPolicy;
 import com.example.springbootbsiccore.member.Member;
 import com.example.springbootbsiccore.member.MemberRepository;
 import com.example.springbootbsiccore.member.MemoryMemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class OrderServiceimpl implements OrderService {
     
-    // private final MemberRepository memberRepository = new MemoryMemberRepository();
-    // private final DiscountPolicy discountPolicy = new FindDiscountPolicy();
-    // private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
     private MemberRepository memberRepository;
     private DiscountPolicy discountPolicy;
-
-    @Autowired
-    public void setMemberRepository(MemberRepository memberRepository) {
-        System.out.println("OrderServiceimpl.setMemberRepository");
-        this.memberRepository = memberRepository;
-    }
-
-    @Autowired
-    public void setDiscountPolicy(DiscountPolicy discountPolicy){
-        System.out.println("OrderServiceimpl.setDiscountPolicy");
-        this.discountPolicy = discountPolicy;
-    }
-
-    @Autowired
-    public OrderServiceimpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        System.out.println("OrderServiceimpl.OrderServiceimpl");
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
