@@ -18,9 +18,21 @@ public class OrderServiceimpl implements OrderService {
     private MemberRepository memberRepository;
     private DiscountPolicy discountPolicy;
 
+    @Autowired
+    public void setMemberRepository(MemberRepository memberRepository) {
+        System.out.println("OrderServiceimpl.setMemberRepository");
+        this.memberRepository = memberRepository;
+    }
+
+    @Autowired
+    public void setDiscountPolicy(DiscountPolicy discountPolicy){
+        System.out.println("OrderServiceimpl.setDiscountPolicy");
+        this.discountPolicy = discountPolicy;
+    }
 
     @Autowired
     public OrderServiceimpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        System.out.println("OrderServiceimpl.OrderServiceimpl");
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
