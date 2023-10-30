@@ -1,5 +1,6 @@
 package com.example.springbootbsiccore.order;
 
+import com.example.springbootbsiccore.annotation.MainDiscountPolicy;
 import com.example.springbootbsiccore.discount.DiscountPolicy;
 import com.example.springbootbsiccore.discount.FixDiscountPolicy;
 import com.example.springbootbsiccore.discount.RateDiscountPolicy;
@@ -17,7 +18,7 @@ public class OrderServiceimpl implements OrderService {
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
-    public OrderServiceimpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    public OrderServiceimpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
