@@ -1,5 +1,7 @@
 package com.example.springbootbsiccore.lifecycle;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
@@ -28,6 +30,7 @@ public class NetworkClinet {
         System.out.println("close: " + url);
     }
 
+    @PostConstruct
     public void init() {
         // 의존 이 끝나면 호출해준다.
         System.out.println("NetworkClinet.init");
@@ -35,6 +38,7 @@ public class NetworkClinet {
         call("초기화 연결 메시지");
     }
 
+    @PreDestroy
     public void close() {
         System.out.println("NetworkClinet.close");
         disconnect();
