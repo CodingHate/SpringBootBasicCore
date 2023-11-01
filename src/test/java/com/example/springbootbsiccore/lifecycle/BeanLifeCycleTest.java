@@ -18,7 +18,7 @@ public class BeanLifeCycleTest {
 
     @Configuration
     static class LifeCycleConfig{
-        @Bean
+        @Bean(initMethod = "init", destroyMethod = "closef")
         public NetworkClinet networkClinet(){
             NetworkClinet networkClinet = new NetworkClinet();
             networkClinet.setUrl("http://hello-spring.dev");

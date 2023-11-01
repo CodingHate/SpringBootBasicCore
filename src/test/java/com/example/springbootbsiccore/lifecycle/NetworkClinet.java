@@ -3,7 +3,7 @@ package com.example.springbootbsiccore.lifecycle;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
-public class NetworkClinet implements InitializingBean, DisposableBean {
+public class NetworkClinet {
     private String url;
 
     public NetworkClinet() {
@@ -28,15 +28,15 @@ public class NetworkClinet implements InitializingBean, DisposableBean {
         System.out.println("close: " + url);
     }
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
+    public void init() {
         // 의존 이 끝나면 호출해준다.
+        System.out.println("NetworkClinet.init");
         connect();
         call("초기화 연결 메시지");
     }
 
-    @Override
-    public void destroy() throws Exception {
+    public void close() {
+        System.out.println("NetworkClinet.close");
         disconnect();
     }
 }
