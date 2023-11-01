@@ -1,12 +1,13 @@
 package com.example.springbootbsiccore.lifecycle;
 
-public class NetworkClinet {
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+
+public class NetworkClinet implements InitializingBean, DisposableBean {
     private String url;
 
     public NetworkClinet() {
         System.out.println("생성자 호출, url = " + url);
-        connect();
-        call("초기화 연결 메시지");
     }
 
     public void setUrl(String url) {
@@ -25,5 +26,17 @@ public class NetworkClinet {
     // 서비스 종료 시 호출
     public void disconnect(){
         System.out.println("close: " + url);
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        // 의존 이 끝나면 호출해준다.
+        connect();
+        call("초기화 연결 메시지");
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        disconnect();
     }
 }
